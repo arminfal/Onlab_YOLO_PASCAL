@@ -13,3 +13,12 @@ model-name -> model results on a few handselected pictures
 
 onlab.ipynb -> Code in jupyternotebook  
 
+Training results:  
+AdamW optimisaton with custom learning rate  and momentum:  
+![trainAdamWopt](runs/segment/trainAdamWopt/results.png)  
+Continuing previous AdamW optimisation training with patience/earlystopping=30:  
+![trainAdamWopt+earlyStopping](runs/segment/trainAdeamWopt+patience30/results.png)  
+Auto Optimisation, default learning rate and momentum+ custom hyperparameters from tuning:  
+![trainautoopt](runs/segment/trainautoopt/results.png)  
+Default hyperparameters:
+![traindefhyppar](runs/segment/traindefhyppar/results.png)
