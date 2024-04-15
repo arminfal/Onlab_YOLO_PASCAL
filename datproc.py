@@ -169,9 +169,9 @@ def generate_labels(xml_file, png_file, label_file):
                     f.write(f'{class_number}{contour_str}\n')
 
 # Get all XML files in folder
-xml_files = glob.glob('Annotations\\*.xml')
-png_files_dir = 'SegmentationObject\\'
-label_files_dir = 'IMGAnnotations\\'
+xml_files = glob.glob('Annotations/xml')
+png_files_dir = 'SegmentationObject/'
+label_files_dir = 'IMGAnnotations/'
 
 
 # For each XML file
