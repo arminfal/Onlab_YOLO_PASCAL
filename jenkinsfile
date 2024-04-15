@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Data Processing') {
             steps {
-                echo "Building.."
+                echo "Data Processing.."
                 sh '''
                 chmod -R 777 .
                 . env/bin/activate
@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Training') {
             steps {
-                echo "Testing.."
+                echo "Training.."
                 sh '''
                 chmod -R 777 .
                 . env/bin/activate
