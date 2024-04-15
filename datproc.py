@@ -171,6 +171,9 @@ xml_files = glob.glob('Annotations\\*.xml')
 png_files_dir = 'SegmentationObject\\'
 label_files_dir = 'IMGAnnotations\\'
 
+# Create label_files_dir if it doesn't exist
+os.makedirs(label_files_dir, exist_ok=True)
+
 # For each XML file
 for xml_file in xml_files:
     # Extract the base name
