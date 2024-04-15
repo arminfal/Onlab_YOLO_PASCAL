@@ -6,4 +6,3 @@ RUN apt-get update && \
     mkdir -p /home/jenkins && \
     chown -R jenkins:jenkins /home/jenkins && \
     rm -rf /var/lib/apt/lists/*
-USER jenkins
