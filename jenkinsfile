@@ -2,14 +2,22 @@ pipeline {
     agent { 
         node {
             label 'docker-agent-python'
-            }
-      }
+        }
+    }
     stages {
+        stage('Install Dependencies') {
+            steps {
+                echo "Installing Dependencies.."
+                sh '''
+                pip install -r requirements.txt
+                '''
+            }
+        }
         stage('Data Processing') {
             steps {
                 echo "Building.."
                 sh '''
-                echo "doing build stuff.."
+                python datproc.py
                 '''
             }
         }
@@ -17,11 +25,9 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                echo "doing test stuff..
+                python training.py
                 '''
             }
-        }
-
         }
     }
 }
