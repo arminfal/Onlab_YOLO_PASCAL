@@ -10,6 +10,7 @@ pipeline {
             steps {
                 echo "Installing Dependencies.."
                 sh '''
+                pip3 install --upgrade pip
                 pip3 install --only-binary :all: -r requirements.txt
                 '''
             }
