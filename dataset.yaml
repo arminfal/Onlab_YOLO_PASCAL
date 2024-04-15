@@ -1,8 +1,8 @@
 
 path: ../ # dataset root dir
-train: dataset/train/images  # train images relative path
-val: dataset/valid/images  # val images relative path
-test: dataset/test/images  # test images relative path
+train: onlab/dataset/train/images  # train images relative path
+val: onlab/dataset/valid/images  # val images relative path
+test: onlab/dataset/test/images  # test images relative path
 
 # Classes
 names:
