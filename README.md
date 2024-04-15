@@ -63,19 +63,19 @@ Used this repo/tutorial as base:
 
 Jenkins BlueOcean docker image:  
 
-bash`
+```bash
 docker build -t myjenkins-blueocean:2.414.2 .
 ```
 
 Network creation:  
 
-bash`
+```bash
 docker network create jenkins
 ```
 
 Container start:  
 
-bash`
+```bash
 docker run --name jenkins-blueocean --restart=on-failure --detach \
   --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
   --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 \
@@ -89,12 +89,12 @@ Jenkins local site:
 
 Docker proxy to host machine docker:  
 
-bash`
+```bash
 docker run -d --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
 ```
 
 Jenkins Python Agent from dockerfile:  
 
-bash`
+```bash
 docker pull arminfal/onlab:latest
 ```
