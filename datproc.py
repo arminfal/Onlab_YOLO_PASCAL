@@ -7,6 +7,7 @@ import os
 import skimage.measure
 import cv2
 import shutil
+
 def is_clockwise(contour):
     # calculate the signed area
     signed_area = 0.5 * np.sum((contour[:-1, 0] * contour[1:, 1]) - (contour[:-1, 1] * contour[1:, 0]))
