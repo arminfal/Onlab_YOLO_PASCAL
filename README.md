@@ -123,4 +123,12 @@ docker pull arminfal/onlab:latest
 - **SCM:** Git
 - **Repo URL:** [https://github.com/arminfal/Onlab_YOLO_PASCAL](https://github.com/arminfal/Onlab_YOLO_PASCAL)
 - **Branches to build:** */main
-- **Script path:** jenkinsfile
+- **Script path:** jenkinsfile  
+
+# Jenkinsfile Breakdown
+
+- **Install Dependencies**: Installs necessary packages and Python dependencies from `requirements.txt`.
+- **Data Processing**: Executes `datproc.py` script for data processing.
+- **Training**: Executes `training.py` script for model training.
+
+After execution, it archives all artifacts in the 'runs' directory.
