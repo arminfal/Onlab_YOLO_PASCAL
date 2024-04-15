@@ -53,28 +53,48 @@ The following images show the model in use (on training data, so not the best te
 ![image](https://github.com/arminfal/Onlab_YOLO_PASCAL/assets/26046723/043820a1-fbad-4e37-bd16-96a91a5a14ad)
 ![image](https://github.com/arminfal/Onlab_YOLO_PASCAL/assets/26046723/de0c04ef-ff28-49af-8356-849354e3f9bb)
 
----  
+---
 
-Used this repo/tutorial as base// alapnak ezt a repot/tutorialt használtam:  
-https://github.com/devopsjourney1/jenkins-101  
-https://www.jenkins.io/doc/book/installing/docker/
+Used this repo/tutorial as base:  
+[devopsjourney1/jenkins-101](https://github.com/devopsjourney1/jenkins-101)  
+[Jenkins Docker Installation Guide](https://www.jenkins.io/doc/book/installing/docker/)
+
 **Jenkins setup:**  
+
 Jenkins BlueOcean docker image:  
 
- '''docker build -t myjenkins-blueocean:2.414.2 .'''  
- network creation:  
- '''docker network create jenkins'''  
- Container start:  
- '''docker run --name jenkins-blueocean --restart=on-failure --detach `
-  --network jenkins --env DOCKER_HOST=tcp://docker:2376 `
-  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 `
-  --volume jenkins-data:/var/jenkins_home `
-  --volume jenkins-docker-certs:/certs/client:ro `
-  --publish 8080:8080 --publish 50000:50000 myjenkins-blueocean:2.414.2'''  
+bash`
+docker build -t myjenkins-blueocean:2.414.2 .
+```
+
+Network creation:  
+
+bash`
+docker network create jenkins
+```
+
+Container start:  
+
+bash`
+docker run --name jenkins-blueocean --restart=on-failure --detach \
+  --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
+  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 \
+  --volume jenkins-data:/var/jenkins_home \
+  --volume jenkins-docker-certs:/certs/client:ro \
+  --publish 8080:8080 --publish 50000:50000 myjenkins-blueocean:2.414.2
+```
+
 Jenkins local site:  
-'https://localhost:8080/'  
+[https://localhost:8080/](https://localhost:8080/)
+
 Docker proxy to host machine docker:  
-'''docker run -d --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock'''
+
+bash`
+docker run -d --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
+```
 
 Jenkins Python Agent from dockerfile:  
-'''docker pull arminfal/onlab:latest'''  
+
+bash`
+docker pull arminfal/onlab:latest
+```
