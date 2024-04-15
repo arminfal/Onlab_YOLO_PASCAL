@@ -61,7 +61,7 @@ The following images show the model in use (on training data, so not the best te
 
 ---
 ## Jenkins  
-Jenkins in docker with docker jobs  
+Jenkins in docker with docker job agents  
 Used this repo/tutorial as base:  
 [devopsjourney1/jenkins-101](https://github.com/devopsjourney1/jenkins-101)  
 [Jenkins Docker Installation Guide](https://www.jenkins.io/doc/book/installing/docker/)
