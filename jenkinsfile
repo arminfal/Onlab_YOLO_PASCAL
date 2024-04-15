@@ -12,6 +12,7 @@ pipeline {
                 sh ''' 
                 apt-get update
                 apt-get install -y python3.11-venv
+                apt-get install ffmpeg libsm6 libxext6  -y
                 python3 -m venv env
                 . env/bin/activate
                 pip install --upgrade pip
