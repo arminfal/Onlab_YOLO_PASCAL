@@ -6,7 +6,14 @@ import os
 import skimage.measure
 import cv2
 import shutil
+import os
+import stat
 
+print("Permissions of current working directory:", stat.filemode(os.stat(os.getcwd()).st_mode))ó
+print("Current working directory:", os.getcwd())
+print("Contents of 'Annotations':", os.listdir('Annotations'))
+print("Contents of 'SegmentationObject':", os.listdir('SegmentationObject'))
+print("Contents of 'IMGAnnotations':", os.listdir('IMGAnnotations'))
 # Create label_files_dir if it doesn't exist
 os.makedirs('IMGAnnotations', exist_ok=True)
 
