@@ -24,6 +24,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
+                chmod -R 777 .
                 . env/bin/activate
                 python datproc.py
                 deactivate
@@ -34,6 +35,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
+                chmod -R 777 .
                 . env/bin/activate
                 python training.py
                 deactivate
