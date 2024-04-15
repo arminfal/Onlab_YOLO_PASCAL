@@ -174,9 +174,9 @@ def generate_labels(xml_file, png_file, label_file):
         print(f"Error processing {xml_file}: {e}")
 
 # Get all XML files in folder
-print("Current working directory:", os.getcwd())
+#print("Current working directory:", os.getcwd())
 xml_files = glob.glob('Annotations/*.xml')
-print("XML files:", xml_files)
+#print("XML files:", xml_files)
 png_files_dir = 'SegmentationObject/'
 label_files_dir = 'IMGAnnotations/'
 
