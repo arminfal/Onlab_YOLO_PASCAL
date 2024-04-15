@@ -1,0 +1,27 @@
+pipeline {
+    agent { 
+        node {
+            label 'docker-agent-python'
+            }
+      }
+    stages {
+        stage('Data Processing') {
+            steps {
+                echo "Building.."
+                sh '''
+                echo "doing build stuff.."
+                '''
+            }
+        }
+        stage('Training') {
+            steps {
+                echo "Testing.."
+                sh '''
+                echo "doing test stuff..
+                '''
+            }
+        }
+
+        }
+    }
+}
