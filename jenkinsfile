@@ -10,6 +10,7 @@ pipeline {
             steps {
                 echo "Installing Dependencies.."
                 sh '''
+                cat /etc/os-release
                 apt-get update
                 apt-get install -y gcc
                 pip3 install --upgrade pip
