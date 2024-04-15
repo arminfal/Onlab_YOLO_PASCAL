@@ -1,12 +1,14 @@
 import xml.etree.ElementTree as ET
 from PIL import Image
 import numpy as np
-from scipy import stats
 import glob
 import os
 import skimage.measure
 import cv2
 import shutil
+
+# Create label_files_dir if it doesn't exist
+os.makedirs('IMGAnnotations', exist_ok=True)
 
 def is_clockwise(contour):
     # calculate the signed area
@@ -171,8 +173,6 @@ xml_files = glob.glob('Annotations\\*.xml')
 png_files_dir = 'SegmentationObject\\'
 label_files_dir = 'IMGAnnotations\\'
 
-# Create label_files_dir if it doesn't exist
-os.makedirs(label_files_dir, exist_ok=True)
 
 # For each XML file
 for xml_file in xml_files:
