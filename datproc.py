@@ -9,12 +9,6 @@ import shutil
 import os
 import stat
 os.makedirs('IMGAnnotations', exist_ok=True)
-
-print("Permissions of current working directory:", stat.filemode(os.stat(os.getcwd()).st_mode))
-print("Current working directory:", os.getcwd())
-print("Contents of 'Annotations':", os.listdir('Annotations'))
-print("Contents of 'SegmentationObject':", os.listdir('SegmentationObject'))
-print("Contents of 'IMGAnnotations':", os.listdir('IMGAnnotations'))
 # Create label_files_dir if it doesn't exist
 
 def is_clockwise(contour):
@@ -180,7 +174,9 @@ def generate_labels(xml_file, png_file, label_file):
         print(f"Error processing {xml_file}: {e}")
 
 # Get all XML files in folder
+print("Current working directory:", os.getcwd())
 xml_files = glob.glob('Annotations/xml')
+print("XML files:", xml_files)
 png_files_dir = 'SegmentationObject/'
 label_files_dir = 'IMGAnnotations/'
 
