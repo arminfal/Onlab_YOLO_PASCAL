@@ -63,8 +63,8 @@ pipeline {
                     . env/bin/activate
                     docker run -d --name temp-container arminfal/onlab:latest
                     docker cp . temp-container:/app
-                    docker commit temp-container arminfal/onlab:predict
-                    docker build -t arminfal/onlab:predict .
+                    docker commit -c 'CMD ["python", "/app/predict.py"]' temp-container arminfal/onlab:predict                    docker build -t arminfal/onlab:predict .
+                    docker stop temp-container
                     docker rm temp-container
                     deactivate
                     '''
