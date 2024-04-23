@@ -56,6 +56,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image.."
+                withCredentials([usernamePassword(credentialsId: '6df84f71-e1b2-4b41-9ce4-4b2ff745ee09', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+
                 sh '''
                 docker build -t arminfal/onlab:predict .
                 '''
