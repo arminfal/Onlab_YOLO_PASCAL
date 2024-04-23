@@ -4,9 +4,6 @@ pipeline {
             label 'agent1'
         }
     }
-    environment {
-        DOCKER_HOST = 'tcp://172.18.0.2:2375'
-    }
     stages {
         
         stage('Install Dependencies ') {
