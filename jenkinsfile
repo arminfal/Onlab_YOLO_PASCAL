@@ -14,7 +14,9 @@ pipeline {
                 apt-get install ffmpeg libsm6 libxext6  -y
                 python3 -m venv env
                 . env/bin/activate
-                pip install --upgrade pip
+                pip install --upgrade 
+                pip install flask
+
                 pip install -r requirements.txt
                 deactivate
                 '''
@@ -42,11 +44,36 @@ pipeline {
                 '''
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                echo "Building Docker Image.."
+                sh '''
+                docker build -t arminfal/onlab:predict .
+                '''
+            }
+        }
+        stage('Deploy Docker Image') {
+            steps {
+                echo "Deploying Docker Image.."
+                sh '''
+                docker tag arminfal/onlab:predict arminfal/onlab:predict
+                docker push arminfal/onlab:predict
+                '''
+            }
+        }
+        stage('Start Docker Container') {
+            steps {
+                echo "Running Docker Container.."
+                sh '''
+                docker pull arminfal/onlab:predict
+                docker run -d -p 8081:8081 arminfal/onlab:predict
+                '''
+            }
+        }
     }
     post {
         always {
             archiveArtifacts artifacts: 'runs/**', fingerprint: true
         }
     }
-    
 }
