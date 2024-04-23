@@ -5,7 +5,7 @@ pipeline {
     agent { 
         node {
             label 'agent1'
-            args  '--network="jenkins"'
+            args  '--net="jenkins"'
         }
     }
     stages {
