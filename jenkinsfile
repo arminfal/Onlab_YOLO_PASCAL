@@ -4,6 +4,9 @@ pipeline {
             label 'agent1'
         }
     }
+    environment {
+        DOCKER_HOST = 'tcp://docker:2376'
+    }
     stages {
         
         stage('Install Dependencies ') {
