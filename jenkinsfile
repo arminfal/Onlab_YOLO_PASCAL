@@ -10,8 +10,8 @@ pipeline {
             steps {
                 echo "Installing Dependencies.."
                 sh ''' 
-                apt-get install docker-ce
                 apt-get update && apt-get install -y python3.11-venv
+                apt-get install docker-ce
                 apt-get install ffmpeg libsm6 libxext6  -y
                 python3 -m venv env
                 . env/bin/activate
