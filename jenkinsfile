@@ -25,7 +25,7 @@ pipeline {
                 python3 -m venv env
                 . env/bin/activate
                 pip install --upgrade pip
-                pip install --upgrade flask
+                pip install flask werkzeug ultralytics Pillow
                 pip install -r requirements.txt
                 deactivate
                 '''
@@ -59,6 +59,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: '6df84f71-e1b2-4b41-9ce4-4b2ff745ee09', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                    chmod -R 777 .
                     docker build -t arminfal/onlab:predict .
                     '''
                 }
@@ -69,6 +70,7 @@ pipeline {
                 echo "Deploying Docker Image.."
                 withCredentials([usernamePassword(credentialsId: '6df84f71-e1b2-4b41-9ce4-4b2ff745ee09', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
+                    chmod -R 777 .
                     docker tag arminfal/onlab:predict arminfal/onlab:predict
                     docker push arminfal/onlab:predict
                     '''
@@ -79,6 +81,7 @@ pipeline {
             steps {
                 echo "Running Docker Container.."
                 sh '''
+                chmod -R 777 .
                 docker pull arminfal/onlab:predict
                 docker run -d -p 8081:8081 arminfal/onlab:predict
                 '''
