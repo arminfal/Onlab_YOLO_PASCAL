@@ -56,20 +56,23 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image.."
-                withCredentials([usernamePassword(credentialsId: '6df84f71-e1b2-4b41-9ce4-4b2ff745ee09', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-
-                sh '''
-                docker build -t arminfal/onlab:predict .
-                '''
+                withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh '''
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                    docker build -t arminfal/onlab:predict .
+                    '''
+                }
             }
         }
         stage('Deploy Docker Image') {
             steps {
                 echo "Deploying Docker Image.."
-                sh '''
-                docker tag arminfal/onlab:predict arminfal/onlab:predict
-                docker push arminfal/onlab:predict
-                '''
+                withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh '''
+                    docker tag arminfal/onlab:predict arminfal/onlab:predict
+                    docker push arminfal/onlab:predict
+                    '''
+                }
             }
         }
         stage('Start Docker Container') {
