@@ -17,7 +17,7 @@ def upload_file():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
-        model = YOLO(f'runs\\segment\\train\\weights\\best.pt')
+        model = YOLO(f'runs/segment/train/weights/best.pt')
         results = model(os.path.join(app.config['UPLOAD_FOLDER'], filename), stream=True)
         
         # Process each frame in the results
