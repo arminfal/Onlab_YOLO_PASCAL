@@ -143,8 +143,8 @@ docker pull arminfal/onlab:latest
 - **Start Docker Container**: Starts the docker container, which will run on the docker server even after the job itself stops.
 After execution, it archives all artifacts in the 'runs' directory.  
 # CI/CD pipeline diagram  
-![image](Jenkins diagram.png)
+![image](Jenkinsdiagram.png)
 # Pipeline:  
-![image](Jenkins Pipeline.png)
+![image](JenkinsPipeline.png)
 # Created Website  
-![image](predict example.png)
+![image](predictexample.png)
