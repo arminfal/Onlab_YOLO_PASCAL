@@ -61,7 +61,7 @@ pipeline {
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                     chmod -R 777 .
                     . env/bin/activate
-                    docker run -d --name temp-container arminfal/onlab:latest
+                    docker run --name temp-container arminfal/onlab:latest
                     docker cp . temp-container:/app
                     docker exec temp-container bash -c "
                         apt-get update && apt-get install -y python3.11-venv
