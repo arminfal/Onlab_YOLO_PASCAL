@@ -138,5 +138,13 @@ docker pull arminfal/onlab:latest
 - **Install Dependencies**: Installs necessary packages and Python dependencies from `requirements.txt`.
 - **Data Processing**: Executes `datproc.py` script for data processing.
 - **Training**: Executes `training.py` script for model training.
-
-After execution, it archives all artifacts in the 'runs' directory.
+- **Build Docker Image**: Builds a docker image from the pipeline results.
+- **Deploy Docker Deploy**: Tags and pushes the docker image to dockerhub(curently disabled to speed up developing).
+- **Start Docker Container**: Starts the docker container, which will run on the docker server even after the job itself stops.
+After execution, it archives all artifacts in the 'runs' directory.  
+# CI/CD pipeline diagram  
+![image](Jenkins diagram.png)  
+# Pipeline:  
+![image](Jenkins Pipeline.png)  
+# Created Website  
+![image](predict example.png)  
