@@ -15,6 +15,7 @@ def upload_file():
     if request.method == 'POST':
         file = request.files['file']
         filename = secure_filename(file.filename)
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
         model = YOLO(f'runs/segment/train/weights/best.pt')
