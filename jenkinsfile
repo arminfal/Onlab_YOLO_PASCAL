@@ -61,25 +61,25 @@ pipeline {
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                     chmod -R 777 .
                     . env/bin/activate
-                    docker run --name temp-container arminfal/onlab:latest
+                    docker run -d --name temp-container arminfal/onlab:latest
                     docker cp . temp-container:/app
                     docker exec temp-container bash -c "
-                        apt-get update && apt-get install -y python3.11-venv
-                        apt-get install -y ca-certificates curl
-                        install -m 0755 -d /etc/apt/keyrings
-                        curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-                        chmod a+r /etc/apt/keyrings/docker.asc
+                        apt-get update && apt-get install -y python3.11-venv &&
+                        apt-get install -y ca-certificates curl &&
+                        install -m 0755 -d /etc/apt/keyrings &&
+                        curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc &&
+                        chmod a+r /etc/apt/keyrings/docker.asc &&
                         echo \
                         'deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
                         $(. /etc/os-release && echo "$VERSION_CODENAME") stable' | \
-                        tee /etc/apt/sources.list.d/docker.list > /dev/null
-                        apt-get update
-                        apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-                        apt-get install -y ffmpeg libsm6 libxext6  -y
-                        python3 -m venv env
-                        . env/bin/activate
-                        pip install --upgrade pip
-                        pip install flask werkzeug ultralytics Pillow
+                        tee /etc/apt/sources.list.d/docker.list > /dev/null &&
+                        apt-get update &&
+                        apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin &&
+                        apt-get install -y ffmpeg libsm6 libxext6  -y &&
+                        python3 -m venv env &&
+                        . env/bin/activate &&
+                        pip install --upgrade pip &&
+                        pip install flask werkzeug ultralytics Pillow &&
                         pip install -r /app/requirements.txt
                     "
                     docker commit -c 'CMD ["python", "/app/predict.py"]' temp-container arminfal/onlab:predict
