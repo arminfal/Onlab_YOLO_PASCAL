@@ -18,7 +18,9 @@ def upload_file():
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
-        model = YOLO(f'runs/segment/train/weights/best.pt')
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(script_dir, 'runs/segment/traindefhyppar/weights/best.pt') #using pretrained model, because the training during the jenkins run isnt good enough for actual detection/segmentation
+        model = YOLO(model_path)
         results = model(os.path.join(app.config['UPLOAD_FOLDER'], filename), stream=True)
         
         # Process each frame in the results
@@ -49,11 +51,11 @@ def upload_file():
 
 @app.route('/uploads/<filename>')
 def send_uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+    return send_from_directory('/home/jenkins/uploads', filename)
 
 @app.route('/results/<filename>')
 def send_result_file(filename):
-    return send_from_directory(app.config['RESULT_FOLDER'], filename)
+    return send_from_directory('/home/jenkins/results', filename)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=8081)
