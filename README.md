@@ -144,7 +144,7 @@ docker pull arminfal/onlab:latest
 After execution, it archives all artifacts in the 'runs' directory.  
 # CI/CD pipeline diagram  
 ![image](Jenkinsdiagram.png)
-# Pipeline:  
+# Pipeline  
 ![image](JenkinsPipeline.png)
 # Created Website  
 ![image](predictexample.png)
