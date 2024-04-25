@@ -141,7 +141,9 @@ docker pull arminfal/onlab:latest
 - **Build Docker Image**: Builds a docker image from the pipeline results.
 - **Deploy Docker Deploy**: Tags and pushes the docker image to dockerhub(curently disabled to speed up developing).
 - **Start Docker Container**: Starts the docker container, which will run on the docker server even after the job itself stops.  
+  
 The prediction uses a pretrained model, because the jenkins pipeline only runs a very short training, which has no real detection, it would need to run at least several hours on a GPU to give any results.  
+  
 After execution, it archives all artifacts in the 'runs' directory.  
 # CI/CD pipeline diagram  
 ![image](Jenkinsdiagram.png)
