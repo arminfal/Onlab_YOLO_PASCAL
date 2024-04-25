@@ -78,7 +78,7 @@ pipeline {
                     sh '''
                     chmod -R 777 .
                     docker tag arminfal/onlab:predict arminfal/onlab:predict
-                    //docker push arminfal/onlab:predict
+                    #docker push arminfal/onlab:predict
                     '''
                 }
             }
@@ -88,7 +88,7 @@ pipeline {
                 echo "Running Docker Container.."
                 sh '''
                 chmod -R 777 .
-                //docker pull arminfal/onlab:predict
+                #docker pull arminfal/onlab:predict
                 docker run -d -p 8081:8081 arminfal/onlab:predict
                 '''
             }
